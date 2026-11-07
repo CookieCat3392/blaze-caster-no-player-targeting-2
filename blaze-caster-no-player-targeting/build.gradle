@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.107'
+}
+
+group = 'dev.cookiecat'
+version = '1.0.0'
+
+base {
+    archivesName = 'blaze-caster-no-player-targeting'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+neoForge {
+    version = '21.1.262'
+
+    runs {
+        server {
+            server()
+            gameDirectory = project.file('run')
+        }
+    }
+
+    mods {
+        blaze_caster_no_player_targeting {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    // NeoForge supplies Mixin at runtime. These dependencies provide the
+    // annotations and annotation processor while compiling this project.
+    compileOnly 'org.spongepowered:mixin:0.8.7'
+    annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
