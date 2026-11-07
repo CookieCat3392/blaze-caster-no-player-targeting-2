@@ -17,11 +17,17 @@ java {
     }
 }
 
-// Repository used to download Create: Wizardry for compilation.
 repositories {
+    // Modrinth Maven repository
     maven {
         name = 'Modrinth'
         url = 'https://api.modrinth.com/maven'
+    }
+
+    // Create and Ponder Maven repository
+    maven {
+        name = 'Create'
+        url = 'https://maven.createmod.net'
     }
 }
 
@@ -49,7 +55,15 @@ dependencies {
     // Create: Wizardry 1.21.1-0.5.1-pre1
     compileOnly 'maven.modrinth:OeGdeWEj:K1xkNKKf'
 
+    // Ponder, required by Create's SmartBlockEntity
+    compileOnly 'net.createmod.ponder:ponder-neoforge:1.0.82+mc1.21.1'
+
     // Mixin annotations and annotation processor
     compileOnly 'org.spongepowered:mixin:0.8.7'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
 }
