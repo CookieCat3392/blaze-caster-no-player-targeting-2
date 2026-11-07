@@ -1,3 +1,4 @@
+
 plugins {
     id 'java'
     id 'net.neoforged.moddev' version '2.0.107'
@@ -13,6 +14,14 @@ base {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+// Repository used to download Create: Wizardry for compilation.
+repositories {
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
     }
 }
 
@@ -34,8 +43,11 @@ neoForge {
 }
 
 dependencies {
-    // NeoForge supplies Mixin at runtime. These dependencies provide the
-    // annotations and annotation processor while compiling this project.
+    // Make Create: Wizardry available to Java while compiling.
+    // compileOnly prevents its classes from being bundled into our mod.
+    compileOnly 'maven.modrinth:OeGdeWEj:K1xkNKKf'
+
+    // Mixin annotations and annotation processor.
     compileOnly 'org.spongepowered:mixin:0.8.7'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
 }
