@@ -43,16 +43,13 @@ neoForge {
 }
 
 dependencies {
-    // Make Create: Wizardry available to Java while compiling.
-    // compileOnly prevents its classes from being bundled into our mod.
+    // Create 6.0.10
+    compileOnly 'maven.modrinth:LNytGWDc:UjX6dr61'
+
+    // Create: Wizardry 1.21.1-0.5.1-pre1
     compileOnly 'maven.modrinth:OeGdeWEj:K1xkNKKf'
 
-    // Mixin annotations and annotation processor.
+    // Mixin annotations and annotation processor
     compileOnly 'org.spongepowered:mixin:0.8.7'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-    options.release = 21
 }
